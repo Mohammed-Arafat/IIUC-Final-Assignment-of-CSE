@@ -13,14 +13,16 @@ typedef struct User SU;
 
 SU info[200];
 
-void showInfo(unsigned int x)
+void showInfo()
 {
 
-    unsigned int i, j;
+    unsigned int i, j, x;
 
     FILE *fl;
 
     fl = fopen ("userDB.txt", "r");
+
+    fscanf (fl, "%u", &x);
 
     for (i = 0; i < x; i++)
     {
@@ -51,18 +53,28 @@ void showInfo(unsigned int x)
             printf ("%u ", info[i].friends_id[j]);
         }
 
-        printf ("\n");
+        printf ("\n\n\n");
     }
 
 }
 
 int main()
 {
-    unsigned int n;
+    unsigned short n;
 
-    scanf ("%u", &n);
+    printf ("1. Show All Profiles:- press 1\n");
 
-    showInfo(n);
+    scanf ("%hu", &n);
+
+    printf ("\n\n");
+
+    if (n == 1)
+    {
+        showInfo();
+    }
+    
+
+
 
     return 0;
 }
