@@ -187,8 +187,6 @@ void remove_Profile(unsigned int m)
 
                         info[i].number_of_friends--;
 
-                        //goto RRR;
-                        
                     }
                     
                 }
@@ -200,7 +198,6 @@ void remove_Profile(unsigned int m)
         
     }
 
-    RRR:;
 
     write_Data();
 
@@ -208,13 +205,44 @@ void remove_Profile(unsigned int m)
 
 
 
+
+void addFriend(unsigned int id1, unsigned int id2)
+{
+    read_Data();
+
+    unsigned int i;
+
+    for ( i = 0; i < x; i++)
+    {
+        if (info[i].id == id1)
+        {
+            info[i].number_of_friends++;
+
+            info[i].friends_id[info[i].number_of_friends - 1] = id2;
+        }
+        else if (info[i].id == id2)
+        {
+            info[i].number_of_friends++;
+
+            info[i].friends_id[info[i].number_of_friends - 1] = id1;
+        }
+        
+    }
+
+    write_Data();
+    
+}
+
+
+
+
+
 int main()
 {
     unsigned short n;
 
-    unsigned int m;
 
-    printf ("1. If you want to see all profile, then press 1\n2. If you want to add a new profile, then press 2\n3. If you want to remove a profile, then press 3\n");
+    printf ("1. If you want to see all profile, then press 1\n2. If you want to add a new profile, then press 2\n3. If you want to remove a profile, then press 3\n4. If you want to make friend between two profiles, then press 4\n");
 
     scanf ("%hu", &n);
 
@@ -232,12 +260,26 @@ int main()
 
     else if (n == 3)
     {
+        unsigned int m;
+
         printf("Give the profile id that you want to remove:-  ");
 
         scanf ("%u", &m);
 
         remove_Profile(m);
     }
+
+    else if (n == 4)
+    {
+        unsigned int id1, id2;
+
+        printf ("Give two profile IDs that you want to make friend:-  ");
+
+        scanf("%u%u", &id1, &id2);
+
+        addFriend(id1, id2);
+    }
+    
     
 
     return 0;
