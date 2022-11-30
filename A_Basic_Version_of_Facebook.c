@@ -17,6 +17,26 @@ SU info[200];
 
 unsigned int x;
 
+void read_Data();
+
+void write_Data();
+
+void write_in_console();
+
+void showInfo();
+
+void addInfo();
+
+void remove_Profile();
+
+void addFriend();
+
+void checking_strong_password();
+
+
+
+
+
 
 void read_Data()
 {
@@ -118,17 +138,7 @@ void showInfo()
 
     read_Data();
 
-    for (i = 0; i < x; i++)
-    {
-        printf ("%u\n%s\n%s\n%s\n%u\n", info[i].id, info[i].name_of_USER, info[i].password, info[i].email_address, info[i].number_of_friends);
-
-        for ( j = 0; j < info[i].number_of_friends; j++)
-        {
-            printf ("%u ", info[i].friends_id[j]);
-        }
-
-        printf ("\n\n\n");
-    }
+    write_in_console();
 
 }
 
@@ -231,11 +241,15 @@ void remove_Profile()
 
 
 
-void addFriend(unsigned int id1, unsigned int id2)
+void addFriend()
 {
     read_Data();
 
-    unsigned int i;
+    unsigned int i, id1, id2;
+
+    printf ("Give two profile IDs that you want to make friend:-  ");
+
+    scanf("%u%u", &id1, &id2);
 
     for ( i = 0; i < x; i++)
     {
@@ -342,13 +356,7 @@ int main()
 
     else if (n == 4)
     {
-        unsigned int id1, id2;
-
-        printf ("Give two profile IDs that you want to make friend:-  ");
-
-        scanf("%u%u", &id1, &id2);
-
-        addFriend(id1, id2);
+        addFriend();
     }
 
     else if (n == 5)
