@@ -174,9 +174,14 @@ void addInfo()
 }
 
 
-void remove_Profile(unsigned int m)
+void remove_Profile()
 {
-    unsigned int i, j, k, remove_id;
+    unsigned int i, j, m, k, remove_id;
+
+    printf("Give the profile id that you want to remove:-  ");
+
+    scanf ("%u", &m);
+
 
     read_Data();
 
@@ -332,13 +337,7 @@ int main()
 
     else if (n == 3)
     {
-        unsigned int m;
-
-        printf("Give the profile id that you want to remove:-  ");
-
-        scanf ("%u", &m);
-
-        remove_Profile(m);
+        remove_Profile();
     }
 
     else if (n == 4)
@@ -356,9 +355,7 @@ int main()
     {
         checking_strong_password();
     }
-    
-    
-    
+
 
     return 0;
 }
