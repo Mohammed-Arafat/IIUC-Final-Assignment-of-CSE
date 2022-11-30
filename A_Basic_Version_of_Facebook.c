@@ -90,6 +90,26 @@ void write_Data()
 
 
 
+void write_in_console()
+{
+    unsigned int i, j;
+
+    for (i = 0; i < x; i++)
+    {
+        printf ("%u\n%s\n%s\n%s\n%u\n", info[i].id, info[i].name_of_USER, info[i].password, info[i].email_address, info[i].number_of_friends);
+
+        for ( j = 0; j < info[i].number_of_friends; j++)
+        {
+            printf ("%u ", info[i].friends_id[j]);
+        }
+
+        printf ("\n\n\n");
+    }
+
+}
+
+
+
 
 void showInfo()
 {
@@ -236,13 +256,65 @@ void addFriend(unsigned int id1, unsigned int id2)
 
 
 
+void checking_strong_password()
+{
+    read_Data();
+
+    unsigned int i, j;
+
+    unsigned short fu = 0, fl = 0, fsc = 0, fn = 0;
+
+    for ( i = 0; i < x; i++, fu = 0, fl = 0, fsc = 0, fn = 0)
+    {
+        if (strlen(info[i].password) >= 8)
+        {
+
+            for ( j = 0; j < strlen(info[i].password); j++)
+            {
+                if (info[i].password[j] >= 'A' && info[i].password[j] <= 'Z')
+                {
+                    fu = 1;
+                }
+
+                else if (info[i].password[j] >= 'a' && info[i].password [j] <= 'z')
+                {
+                    fl = 1;
+                }
+
+                else if (info[i].password[j] == '#' || info[i].password [j] == '$' || info[i].password [j] == '&'|| info[i].password [j] == '@'|| info[i].password [j] == '*')
+                {
+                    fsc = 1;
+                }
+
+                else if (info[i].password[j] >= '0' && info[i].password [j] <= '9')
+                {
+                    fn = 1;
+                }
+                
+            }
+
+            if (fu == 1 && fl == 1 && fsc == 1 && fn == 1)
+            {
+                printf ("%s\n%s\n", info[i].name_of_USER, info[i].password);
+            }
+            
+
+        }
+        
+    }
+    
+}
+
+
+
+
 
 int main()
 {
     unsigned short n;
 
 
-    printf ("1. If you want to see all profile, then press 1\n2. If you want to add a new profile, then press 2\n3. If you want to remove a profile, then press 3\n4. If you want to make friend between two profiles, then press 4\n");
+    printf ("1. If you want to see all profile, then press 1\n2. If you want to add a new profile, then press 2\n3. If you want to remove a profile, then press 3\n4. If you want to make friend between two profiles, then press 4\n5. If you want to check strong password of a profile, then press 5\n");
 
     scanf ("%hu", &n);
 
@@ -279,6 +351,12 @@ int main()
 
         addFriend(id1, id2);
     }
+
+    else if (n == 5)
+    {
+        checking_strong_password();
+    }
+    
     
     
 
