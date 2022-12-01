@@ -33,6 +33,8 @@ void addFriend();
 
 void checking_strong_password();
 
+void searching_Name();
+
 
 
 
@@ -328,12 +330,86 @@ void checking_strong_password()
 
 
 
+void searching_Name()
+{
+    read_Data();
+
+    char first_name[20], last_name[20], search_Name[20];
+
+    unsigned int i, j, k;
+
+    printf("Search Name:-  ");
+
+    scanf ("%s", search_Name);
+
+    printf("\n\n\n");
+
+    for ( i = 0; i < x; i++)
+    {
+
+        for ( k = 0; info[i].name_of_USER[k] != '\0'; k++)
+        {
+            if (info[i].name_of_USER[k] >= 'A' && info[i].name_of_USER[k] <= 'Z')
+            {
+                info[i].name_of_USER[k] = info[i].name_of_USER[k] + 32;
+            }
+
+            if (search_Name[k] >= 'A' && search_Name[k] <= 'Z')
+            {
+                search_Name[k] = search_Name[k] + 32;
+            }
+            
+            
+        }
+        
+
+
+        for ( j = 0; info[i].name_of_USER[j] != ' '; j++)
+        {
+            first_name[j] = info[i].name_of_USER[j];
+        }
+
+        first_name[j] = '\0';
+
+        if (strcmp(first_name, search_Name) == 0)
+        {
+            printf ("%s\n%s\n\n", info[i].name_of_USER, info[i].email_address);
+
+            continue;
+        }
+        
+
+        for ( j = j + 1, k = 0; info[i].name_of_USER[j] != '\0'; j++, k++)
+        {
+            last_name[k] = info[i].name_of_USER[j];
+        }
+
+        last_name[k] = '\0';
+
+        if (strcmp(last_name, search_Name) == 0)
+        {
+            printf ("%s\n%s\n\n", info[i].name_of_USER, info[i].email_address);
+        }
+        
+        
+    }
+
+    
+}
+
+
+
+
+
+
+
+
 int main()
 {
     unsigned short n;
 
 
-    printf ("1. If you want to see all profile, then press 1\n2. If you want to add a new profile, then press 2\n3. If you want to remove a profile, then press 3\n4. If you want to make friend between two profiles, then press 4\n5. If you want to check strong password of a profile, then press 5\n");
+    printf ("1. If you want to see all profile, then press 1\n2. If you want to add a new profile, then press 2\n3. If you want to remove a profile, then press 3\n4. If you want to make friend between two profiles, then press 4\n5. If you want to check strong password of a profile, then press 5\n6. If you want to search for a name, then press 6\n");
 
     scanf ("%hu", &n);
 
@@ -363,6 +439,12 @@ int main()
     {
         checking_strong_password();
     }
+
+    else if (n == 6)
+    {
+        searching_Name();
+    }
+    
 
 
     return 0;
